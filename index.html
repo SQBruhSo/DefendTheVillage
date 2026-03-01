@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defend the Village</title>
-    <link rel="icon" type="image/png" href="DTV.MascotaWEB.png">
-    
+    <title>Defend the Villageo</title>
+    <link rel="icon" type="image/png" href="DTV.MascotaWEB">
     <!-- Arimo font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +18,7 @@
             box-sizing: border-box;
         }
 
-        /* Fondo con imagen - DTV_Miniatura.png */
+        /* Fondo con imagen - DTV_Miniatura.png (toda la pantalla) */
         body::before {
             content: "";
             position: fixed;
@@ -31,15 +30,15 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.5;
+            opacity: 0.15; /* Muy transparente */
             pointer-events: none;
             z-index: -1;
         }
 
-        /* Variables de modo oscuro (por defecto) con fondos más transparentes */
+        /* Variables de modo oscuro (único tema) */
         :root {
             --bg-body: #1a1a1a;
-            --bg-contenedor: rgba(45, 45, 45, 0.7); /* Más transparente para ver la imagen */
+            --bg-contenedor: rgba(45, 45, 45, 0.7);
             --text-color: #e0e0e0;
             --border-color: #444;
             --acento: #c06e6f;
@@ -49,21 +48,6 @@
             --bg-cita: rgba(58, 58, 58, 0.8);
             --sombra: #000000;
             --icono-color: #e0e0e0;
-        }
-
-        /* Variables de modo claro (menos transparente para mantener legibilidad) */
-        body.light-mode {
-            --bg-body: #c06e6f;
-            --bg-contenedor: rgba(255, 255, 255, 0.85);
-            --text-color: #000000;
-            --border-color: #000000;
-            --acento: #c06e6f;
-            --acento-claro: #d48f8f;
-            --bg-tarjeta: rgba(255, 255, 255, 0.9);
-            --bg-secundario: rgba(240, 240, 240, 0.9);
-            --bg-cita: rgba(240, 240, 240, 0.9);
-            --sombra: #000000;
-            --icono-color: #c06e6f;
         }
 
         body {
@@ -76,7 +60,6 @@
             align-items: center;
             justify-content: center;
             padding: 0;
-            transition: background-color 0.3s, color 0.3s;
         }
 
         .contenedor {
@@ -90,7 +73,6 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            transition: background-color 0.3s, border-color 0.3s;
         }
 
         .header {
@@ -132,22 +114,9 @@
             justify-content: center;
         }
 
-        .theme-toggle {
-            background: none;
-            border: 2px solid var(--border-color);
-            font-size: 1.8rem;
-            padding: 0.3rem 0.8rem;
-            cursor: pointer;
-            color: var(--text-color);
-            background-color: var(--bg-contenedor);
-            box-shadow: 3px 3px 0 var(--sombra);
-            transition: all 0.1s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        /* El botón de tema ha sido eliminado */
 
-        .menu-toggle:hover, .theme-toggle:hover {
+        .menu-toggle:hover {
             background-color: var(--acento);
             color: #ffffff;
             border-color: var(--border-color);
@@ -293,7 +262,6 @@
             padding: 1.5rem;
             margin-bottom: 0;
             flex: 1;
-            transition: background-color 0.3s, border-color 0.3s;
         }
 
         .pagina.activa {
@@ -348,7 +316,6 @@
             background: var(--bg-secundario);
             padding: 1.2rem;
             border: 1px solid var(--border-color);
-            transition: background-color 0.3s;
         }
 
         .lore-extendido p {
@@ -624,7 +591,7 @@
         <div class="header">
             <h1>DEFEND THE VILLAGE</h1>
             <div class="header-buttons">
-                <button class="theme-toggle" id="themeToggle" title="Modo claro/oscuro"><i class="fas fa-sun"></i></button>
+                <!-- Botón de tema eliminado, solo queda el de menú hamburguesa -->
                 <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
             </div>
         </div>
@@ -644,6 +611,7 @@
             <button class="tab-btn" data-pagina="discord"><i class="fab fa-discord"></i> <span data-i18n="discord">DISCORD</span></button>
         </div>
 
+        <!-- Páginas (contenido traducible) -->
         <div id="pagina-lore" class="pagina activa">
             <h2><i class="fas fa-scroll"></i> <span data-i18n="lore_titulo">LORE · CRÓNICAS DEL EXPLORADOR</span></h2>
             <div class="lore-extendido">
@@ -803,33 +771,7 @@
             overlay.classList.remove('activo');
         });
 
-        // Modo oscuro
-        const themeToggle = document.getElementById('themeToggle');
-        const icon = themeToggle.querySelector('i');
-
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light-mode');
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-        } else {
-            document.body.classList.remove('light-mode');
-            icon.classList.add('fa-sun');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-            if (document.body.classList.contains('light-mode')) {
-                localStorage.setItem('theme', 'light');
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            } else {
-                localStorage.setItem('theme', 'dark');
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            }
-        });
-
-        // Traducción
+        // Traducción (ES/EN) - se mantiene igual
         const translations = {
             es: {
                 lore: "LORE",
@@ -934,7 +876,7 @@
 
         aplicarIdioma('es');
 
-        // Cerrar menú si se hace clic en un enlace (para móvil)
+        // Cerrar menú al hacer clic en enlaces (móvil)
         const devLinks = document.querySelectorAll('.miembro-nombre a, .nombre-link a');
         devLinks.forEach(link => {
             link.addEventListener('click', () => {
