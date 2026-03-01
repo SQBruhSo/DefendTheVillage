@@ -39,7 +39,7 @@
         :root {
             --bg-body: #1a1a1a;
             --bg-contenedor: rgba(45, 45, 45, 0.7);
-            --bg-sidebar: rgba(30, 30, 30, 0.98); /* Fondo más sólido para la barra lateral */
+            --bg-sidebar: rgba(30, 30, 30, 0.98);
             --text-color: #e0e0e0;
             --border-color: #444;
             --acento: #c06e6f;
@@ -121,14 +121,13 @@
             border-color: var(--border-color);
         }
 
-        /* Barra lateral con fondo más sólido */
         .sidebar-menu {
             position: fixed;
             top: 0;
             left: -280px;
             width: 260px;
             height: 100vh;
-            background: var(--bg-sidebar); /* Ahora usa la variable con más opacidad */
+            background: var(--bg-sidebar);
             border-right: 4px solid var(--border-color);
             box-shadow: 5px 0 0 var(--sombra);
             transition: left 0.3s ease;
@@ -639,7 +638,7 @@
             <div class="enemigos-grid">
                 <div class="enemigo-card">
                     <div class="enemigo-header">
-                        <h3 style="margin:0;">ZOMBIE NORMAL</h3>
+                        <h3><span data-i18n="zombie_normal">ZOMBIE NORMAL</span></h3>
                     </div>
                     <div class="stats">
                         <div class="stat-item"><span class="stat-label"><span data-i18n="velocidad">Velocidad</span>:</span> <strong>16</strong></div>
@@ -653,7 +652,7 @@
 
                 <div class="enemigo-card">
                     <div class="enemigo-header">
-                        <h3 style="margin:0;">ZOMBIE GRANDE</h3>
+                        <h3><span data-i18n="zombie_grande">ZOMBIE GRANDE</span></h3>
                     </div>
                     <div class="stats">
                         <div class="stat-item"><span class="stat-label"><span data-i18n="velocidad">Velocidad</span>:</span> <strong>12.5</strong></div>
@@ -789,6 +788,8 @@
                 lore5: "De vuelta en su hogar, no dejó de darle vueltas. Algunos aldeanos de pueblos cercanos cuentan que hace décadas, <strong>una piedra morada cayó en esas cuatro tierras</strong>, trayendo una maldición. Otros susurran que un antiguo ritual de los primeros pobladores salió mal. El explorador nunca confirmó estas historias, pero el misterio sigue creciendo... Hasta hoy, nadie ha vuelto a esa villa, y las Tierras Muertas aguardan en silencio.",
                 cita: "“Se la pasó dándole vueltas al asunto, pero hasta ahora no ha podido resolverlo… y tal vez nunca lo haga.”",
                 enemigos_titulo: "ENEMIGOS · ESTADÍSTICAS",
+                zombie_normal: "ZOMBIE NORMAL",
+                zombie_grande: "ZOMBIE GRANDE",
                 velocidad: "Velocidad",
                 vida: "Vida",
                 informacion: "Información",
@@ -825,6 +826,8 @@
                 lore5: "Back home, he kept pondering. Some villagers from nearby towns say that decades ago, <strong>a purple stone fell on those four lands</strong>, bringing a curse. Others whisper that an ancient ritual of the first settlers went wrong. The explorer never confirmed these stories, but the mystery keeps growing... To this day, no one has returned to that village, and the Dead Lands wait in silence.",
                 cita: "“He kept turning it over in his mind, but so far he hasn't been able to solve it... and maybe he never will.”",
                 enemigos_titulo: "ENEMIES · STATISTICS",
+                zombie_normal: "NORMAL ZOMBIE",
+                zombie_grande: "BIG ZOMBIE",
                 velocidad: "Speed",
                 vida: "Health",
                 informacion: "Info",
