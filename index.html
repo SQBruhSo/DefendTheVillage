@@ -17,7 +17,6 @@
             box-sizing: border-box;
         }
 
-        /* Variables de modo oscuro (por defecto) */
         :root {
             --bg-body: #1a1a1a;
             --bg-contenedor: #2d2d2d;
@@ -32,7 +31,6 @@
             --icono-color: #e0e0e0;
         }
 
-        /* Variables de modo claro */
         body.light-mode {
             --bg-body: #c06e6f;
             --bg-contenedor: #ffffff;
@@ -74,7 +72,6 @@
             transition: background-color 0.3s, border-color 0.3s;
         }
 
-        /* Header */
         .header {
             border-bottom: 4px solid var(--border-color);
             padding-bottom: 1rem;
@@ -99,7 +96,6 @@
             align-items: center;
         }
 
-        /* Botón de menú: oculto por defecto (solo se ve en móvil) */
         .menu-toggle {
             display: none;
             background: none;
@@ -136,7 +132,6 @@
             border-color: var(--border-color);
         }
 
-        /* Menú lateral para móvil */
         .sidebar-menu {
             position: fixed;
             top: 0;
@@ -202,7 +197,6 @@
             color: #ffffff;
         }
 
-        /* Overlay */
         .overlay {
             position: fixed;
             top: 0;
@@ -217,7 +211,6 @@
             display: block;
         }
 
-        /* Pestañas desktop */
         .nav-tabs {
             display: flex;
             flex-wrap: wrap;
@@ -272,7 +265,6 @@
             color: #ffffff;
         }
 
-        /* Páginas */
         .pagina {
             display: none;
             background: var(--bg-contenedor);
@@ -331,7 +323,6 @@
             font-size: 1.2rem;
         }
 
-        /* Lore */
         .lore-extendido {
             background: var(--bg-secundario);
             padding: 1.2rem;
@@ -356,7 +347,6 @@
             color: var(--text-color);
         }
 
-        /* Enemigos */
         .enemigos-grid {
             display: flex;
             flex-direction: column;
@@ -413,7 +403,6 @@
             padding-left: 1rem;
         }
 
-        /* Equipo */
         .owner-bloque {
             background: var(--acento);
             color: #ffffff;
@@ -466,6 +455,7 @@
             border-bottom: 3px solid var(--acento);
             transition: all 0.2s ease;
             padding: 0.1rem 0;
+            display: inline-block;
         }
 
         .miembro-nombre a:hover {
@@ -473,6 +463,12 @@
             color: #ffffff;
             padding: 0.2rem 0.5rem;
             border-bottom-color: var(--border-color);
+        }
+
+        /* Efecto pop para los enlaces de desarrolladores en móvil */
+        .miembro-nombre a:active {
+            transform: scale(0.95);
+            transition: transform 0.1s;
         }
 
         .nombres-multiples {
@@ -493,6 +489,7 @@
             border-bottom: 3px solid var(--acento);
             padding-bottom: 0.1rem;
             transition: all 0.2s ease;
+            display: inline-block;
         }
 
         .nombre-link a:hover {
@@ -501,7 +498,11 @@
             padding: 0.2rem 0.5rem;
         }
 
-        /* Discord */
+        .nombre-link a:active {
+            transform: scale(0.95);
+            transition: transform 0.1s;
+        }
+
         .discord-block {
             background: var(--acento);
             border: 4px solid var(--border-color);
@@ -537,9 +538,10 @@
             box-shadow: 7px 7px 0 var(--sombra);
         }
 
-        /* Footer */
         .footer-note {
-            text-align: right;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-top: 1.5rem;
             font-size: 0.8rem;
             color: var(--acento);
@@ -547,13 +549,46 @@
             padding-top: 0.5rem;
         }
 
-        /* Media query para móvil */
+        .idioma-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .idioma-btn {
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-color);
+            font-family: 'Arimo', sans-serif;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            box-shadow: 2px 2px 0 var(--sombra);
+        }
+
+        .idioma-btn:hover {
+            background: var(--acento);
+            color: #ffffff;
+            border-color: var(--border-color);
+        }
+
+        .idioma-btn.activo {
+            background: var(--acento);
+            color: #ffffff;
+            border-color: var(--border-color);
+        }
+
         @media (max-width: 768px) {
             .nav-tabs {
                 display: none;
             }
             .menu-toggle {
                 display: flex;
+            }
+            .footer-note {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
             }
         }
 
@@ -574,62 +609,59 @@
             </div>
         </div>
 
-        <!-- Menú lateral para móvil -->
         <div class="sidebar-menu" id="sidebarMenu">
-            <button class="menu-item activo" data-pagina="lore"><i class="fas fa-book-open"></i> LORE</button>
-            <button class="menu-item" data-pagina="enemigos"><i class="fas fa-skull"></i> ENEMIGOS</button>
-            <button class="menu-item" data-pagina="equipo"><i class="fas fa-users"></i> EQUIPO</button>
-            <button class="menu-item" data-pagina="discord"><i class="fab fa-discord"></i> DISCORD</button>
+            <button class="menu-item activo" data-pagina="lore"><i class="fas fa-book-open"></i> <span data-i18n="lore">LORE</span></button>
+            <button class="menu-item" data-pagina="enemigos"><i class="fas fa-skull"></i> <span data-i18n="enemigos">ENEMIGOS</span></button>
+            <button class="menu-item" data-pagina="equipo"><i class="fas fa-users"></i> <span data-i18n="equipo">EQUIPO</span></button>
+            <button class="menu-item" data-pagina="discord"><i class="fab fa-discord"></i> <span data-i18n="discord">DISCORD</span></button>
         </div>
         <div class="overlay" id="overlay"></div>
 
-        <!-- Pestañas desktop -->
         <div class="nav-tabs" id="desktopTabs">
-            <button class="tab-btn activo" data-pagina="lore"><i class="fas fa-book-open"></i> LORE</button>
-            <button class="tab-btn" data-pagina="enemigos"><i class="fas fa-skull"></i> ENEMIGOS</button>
-            <button class="tab-btn" data-pagina="equipo"><i class="fas fa-users"></i> EQUIPO</button>
-            <button class="tab-btn" data-pagina="discord"><i class="fab fa-discord"></i> DISCORD</button>
+            <button class="tab-btn activo" data-pagina="lore"><i class="fas fa-book-open"></i> <span data-i18n="lore">LORE</span></button>
+            <button class="tab-btn" data-pagina="enemigos"><i class="fas fa-skull"></i> <span data-i18n="enemigos">ENEMIGOS</span></button>
+            <button class="tab-btn" data-pagina="equipo"><i class="fas fa-users"></i> <span data-i18n="equipo">EQUIPO</span></button>
+            <button class="tab-btn" data-pagina="discord"><i class="fab fa-discord"></i> <span data-i18n="discord">DISCORD</span></button>
         </div>
 
-        <!-- Páginas -->
         <div id="pagina-lore" class="pagina activa">
-            <h2><i class="fas fa-scroll"></i> LORE · CRÓNICAS DEL EXPLORADOR</h2>
+            <h2><i class="fas fa-scroll"></i> <span data-i18n="lore_titulo">LORE · CRÓNICAS DEL EXPLORADOR</span></h2>
             <div class="lore-extendido">
-                <h3><i class="fas fa-tree"></i> I. El hallazgo</h3>
-                <p>Un explorador solitario cruzaba el denso bosque cuando, entre la niebla, divisó los tejados de una villa. Intrigado, se acercó. Las calles estaban vacías, los carteles colgaban rotos y el polvo cubría cada rincón. Decidió refugiarse en una casa entreabierta al caer la noche. El silencio era tan profundo que podía oír su propio corazón.</p>
+                <h3><i class="fas fa-tree"></i> <span data-i18n="lore1_tit">I. El hallazgo</span></h3>
+                <p data-i18n="lore1">Un explorador solitario cruzaba el denso bosque cuando, entre la niebla, divisó los tejados de una villa. Intrigado, se acercó. Las calles estaban vacías, los carteles colgaban rotos y el polvo cubría cada rincón. Decidió refugiarse en una casa entreabierta al caer la noche. El silencio era tan profundo que podía oír su propio corazón.</p>
 
-                <h3><i class="fas fa-moon"></i> II. La primera noche</h3>
-                <p>Pasada la medianoche, un rumor de pasos torpes lo despertó. Salió con su arma preparada y se topó con figuras grotescas: <strong>zombies de un rojo nunca visto</strong>. Logró repelerlos, pero la confusión lo carcomía. ¿De dónde habían salido? La villa parecía deshabitada desde hacía años.</p>
+                <h3><i class="fas fa-moon"></i> <span data-i18n="lore2_tit">II. La primera noche</span></h3>
+                <p data-i18n="lore2">Pasada la medianoche, un rumor de pasos torpes lo despertó. Salió con su arma preparada y se topó con figuras grotescas: <strong>zombies de un rojo nunca visto</strong>. Logró repelerlos, pero la confusión lo carcomía. ¿De dónde habían salido? La villa parecía deshabitada desde hacía años.</p>
 
-                <h3><i class="fas fa-map"></i> III. Las Tierras Muertas</h3>
-                <p>Al alba, inspeccionó cada palmo de la aldea. Encontró <strong>cuatro parcelas de tierra reseca, como si la vida hubiera huido de ellas</strong>. Las bautizó como "Tierras Muertas". Sin respuestas, decidió pasar una segunda noche para observar.</p>
+                <h3><i class="fas fa-map"></i> <span data-i18n="lore3_tit">III. Las Tierras Muertas</span></h3>
+                <p data-i18n="lore3">Al alba, inspeccionó cada palmo de la aldea. Encontró <strong>cuatro parcelas de tierra reseca, como si la vida hubiera huido de ellas</strong>. Las bautizó como "Tierras Muertas". Sin respuestas, decidió pasar una segunda noche para observar.</p>
 
-                <h3><i class="fas fa-eye"></i> IV. El origen</h3>
-                <p>Bajo la luz de la luna, vio algo increíble: de aquellas tierras yermas, los zombies emergían directamente del suelo, como si fueran cosechados por una fuerza oscura. Sin atreverse a investigar más, huyó al amanecer.</p>
+                <h3><i class="fas fa-eye"></i> <span data-i18n="lore4_tit">IV. El origen</span></h3>
+                <p data-i18n="lore4">Bajo la luz de la luna, vio algo increíble: de aquellas tierras yermas, los zombies emergían directamente del suelo, como si fueran cosechados por una fuerza oscura. Sin atreverse a investigar más, huyó al amanecer.</p>
 
-                <h3><i class="fas fa-question-circle"></i> V. Teorías y misterios</h3>
-                <p>De vuelta en su hogar, no dejó de darle vueltas. Algunos aldeanos de pueblos cercanos cuentan que hace décadas, <strong>una piedra morada cayó en esas cuatro tierras</strong>, trayendo una maldición. Otros susurran que un antiguo ritual de los primeros pobladores salió mal. El explorador nunca confirmó estas historias, pero el misterio sigue creciendo... Hasta hoy, nadie ha vuelto a esa villa, y las Tierras Muertas aguardan en silencio.</p>
+                <h3><i class="fas fa-question-circle"></i> <span data-i18n="lore5_tit">V. Teorías y misterios</span></h3>
+                <p data-i18n="lore5">De vuelta en su hogar, no dejó de darle vueltas. Algunos aldeanos de pueblos cercanos cuentan que hace décadas, <strong>una piedra morada cayó en esas cuatro tierras</strong>, trayendo una maldición. Otros susurran que un antiguo ritual de los primeros pobladores salió mal. El explorador nunca confirmó estas historias, pero el misterio sigue creciendo... Hasta hoy, nadie ha vuelto a esa villa, y las Tierras Muertas aguardan en silencio.</p>
             </div>
             <div class="cita">
                 <i class="fas fa-quote-left" style="color:var(--acento); margin-right:0.5rem;"></i> 
-                “Se la pasó dándole vueltas al asunto, pero hasta ahora no ha podido resolverlo… y tal vez nunca lo haga.”
+                <span data-i18n="cita">“Se la pasó dándole vueltas al asunto, pero hasta ahora no ha podido resolverlo… y tal vez nunca lo haga.”</span>
             </div>
         </div>
 
         <div id="pagina-enemigos" class="pagina">
-            <h2><i class="fas fa-skull"></i> ENEMIGOS · ESTADÍSTICAS</h2>
+            <h2><i class="fas fa-skull"></i> <span data-i18n="enemigos_titulo">ENEMIGOS · ESTADÍSTICAS</span></h2>
             <div class="enemigos-grid">
                 <div class="enemigo-card">
                     <div class="enemigo-header">
                         <h3 style="margin:0;">ZOMBIE NORMAL</h3>
                     </div>
                     <div class="stats">
-                        <div class="stat-item"><span class="stat-label">Velocidad:</span> <strong>16</strong></div>
-                        <div class="stat-item"><span class="stat-label">Vida:</span> <strong>65</strong></div>
+                        <div class="stat-item"><span class="stat-label"><span data-i18n="velocidad">Velocidad</span>:</span> <strong>16</strong></div>
+                        <div class="stat-item"><span class="stat-label"><span data-i18n="vida">Vida</span>:</span> <strong>65</strong></div>
                     </div>
                     <div>
-                        <p><strong>Información:</strong> Zombie normal, nada del otro mundo, únicamente, que jamás vi un zombie de color rojo. ¡Qué raro!</p>
-                        <div class="pregunta">¿Alguien vio un zombie rojo?</div>
+                        <p><strong><span data-i18n="informacion">Información</span>:</strong> <span data-i18n="info_zombie_normal">Zombie normal, nada del otro mundo, únicamente, que jamás vi un zombie de color rojo. ¡Qué raro!</span></p>
+                        <div class="pregunta"><span data-i18n="pregunta_rojo">¿Alguien vio un zombie rojo?</span></div>
                     </div>
                 </div>
 
@@ -638,73 +670,76 @@
                         <h3 style="margin:0;">ZOMBIE GRANDE</h3>
                     </div>
                     <div class="stats">
-                        <div class="stat-item"><span class="stat-label">Velocidad:</span> <strong>12.5</strong></div>
-                        <div class="stat-item"><span class="stat-label">Vida:</span> <strong>250</strong></div>
+                        <div class="stat-item"><span class="stat-label"><span data-i18n="velocidad">Velocidad</span>:</span> <strong>12.5</strong></div>
+                        <div class="stat-item"><span class="stat-label"><span data-i18n="vida">Vida</span>:</span> <strong>250</strong></div>
                     </div>
                     <div>
-                        <p><strong>Información:</strong> Similar al normal, nomás que este es mucho más grande y fuerte. Espera… <strong>¿¡Tiene músculos!?</strong></p>
-                        <div class="pregunta">¿Alguien vio un zombie con músculos?</div>
+                        <p><strong><span data-i18n="informacion">Información</span>:</strong> <span data-i18n="info_zombie_grande">Similar al normal, nomás que este es mucho más grande y fuerte. Espera… <strong>¿¡Tiene músculos!?</strong></span></p>
+                        <div class="pregunta"><span data-i18n="pregunta_musculos">¿Alguien vio un zombie con músculos?</span></div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div id="pagina-equipo" class="pagina">
-            <h2><i class="fas fa-users"></i> EQUIPO · DESARROLLADORES</h2>
+            <h2><i class="fas fa-users"></i> <span data-i18n="equipo_titulo">EQUIPO · DESARROLLADORES</span></h2>
 
             <div class="owner-bloque">
-                <i class="fas fa-crown"></i> OWNER & DEVMANAGER: <strong>SQBruhSoOfficial</strong>
+                <i class="fas fa-crown"></i> <span data-i18n="owner">OWNER & DEVMANAGER</span>: <strong>SQBruhSoOfficial</strong>
             </div>
 
             <div class="equipo-grid">
                 <div class="miembro-card">
-                    <div class="miembro-rol">CREATIVE MANAGER</div>
+                    <div class="miembro-rol"><span data-i18n="creative">CREATIVE MANAGER</span></div>
                     <div class="miembro-nombre">
-                        <a href="https://www.roblox.com/es/users/3120134074/profile" target="_blank">m0zzz_xd</a>
+                        <a href="https://www.roblox.com/es/users/3120134074/profile" target="_blank" rel="noopener noreferrer">m0zzz_xd</a>
                     </div>
                 </div>
 
                 <div class="miembro-card">
-                    <div class="miembro-rol">DEVELOPERS</div>
+                    <div class="miembro-rol"><span data-i18n="developers">DEVELOPERS</span></div>
                     <div class="nombres-multiples">
-                        <span class="nombre-link"><a href="https://www.roblox.com/es/users/1050188336/profile" target="_blank">jorduc89</a></span>
-                        <span class="nombre-link"><a href="https://www.roblox.com/es/users/9927041122/profile" target="_blank">SQBruhSoOfficial</a></span>
+                        <span class="nombre-link"><a href="https://www.roblox.com/es/users/1050188336/profile" target="_blank" rel="noopener noreferrer">jorduc89</a></span>
+                        <span class="nombre-link"><a href="https://www.roblox.com/es/users/9927041122/profile" target="_blank" rel="noopener noreferrer">SQBruhSoOfficial</a></span>
                     </div>
                 </div>
 
                 <div class="miembro-card">
-                    <div class="miembro-rol">BUILDERS</div>
+                    <div class="miembro-rol"><span data-i18n="builders">BUILDERS</span></div>
                     <div class="miembro-nombre">
-                        <a href="https://www.roblox.com/es/users/1050188336/profile" target="_blank">jorduc89</a>
+                        <a href="https://www.roblox.com/es/users/1050188336/profile" target="_blank" rel="noopener noreferrer">jorduc89</a>
                     </div>
                 </div>
 
                 <div class="miembro-card">
-                    <div class="miembro-rol">TESTERS</div>
+                    <div class="miembro-rol"><span data-i18n="testers">TESTERS</span></div>
                     <div class="miembro-nombre">
-                        <a href="https://www.roblox.com/es/users/3120134074/profile" target="_blank">m0zzz_xd</a>
+                        <a href="https://www.roblox.com/es/users/3120134074/profile" target="_blank" rel="noopener noreferrer">m0zzz_xd</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <div id="pagina-discord" class="pagina">
-            <h2><i class="fab fa-discord"></i> DISCORD</h2>
+            <h2><i class="fab fa-discord"></i> <span data-i18n="discord_titulo">DISCORD</span></h2>
             <div class="discord-block">
                 <i class="fab fa-discord"></i>
-                <p style="font-size:1.5rem; font-weight:700;">ÚNETE AL SERVIDOR</p>
-                <a href="https://discord.gg/cQthVHrdbF" target="_blank" class="btn-discord">discord.gg/cQthVHrdbF</a>
-                <p style="margin-top:1.2rem;">charlas, actualizaciones y misterios sin resolver</p>
+                <p style="font-size:1.5rem; font-weight:700;"><span data-i18n="unete">ÚNETE AL SERVIDOR</span></p>
+                <a href="https://discord.gg/cQthVHrdbF" target="_blank" class="btn-discord" rel="noopener noreferrer">discord.gg/cQthVHrdbF</a>
+                <p style="margin-top:1.2rem;"><span data-i18n="discord_text">charlas, actualizaciones y misterios sin resolver</span></p>
             </div>
         </div>
 
         <div class="footer-note">
-            cuatro tierras, un misterio
+            <span data-i18n="footer">cuatro tierras, un misterio</span>
+            <div class="idioma-selector">
+                <button class="idioma-btn activo" data-idioma="es">ES</button>
+                <button class="idioma-btn" data-idioma="en">EN</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // Elementos comunes
         const tabs = document.querySelectorAll('.tab-btn');
         const menuItems = document.querySelectorAll('.menu-item');
         const paginas = document.querySelectorAll('.pagina');
@@ -712,7 +747,6 @@
         const sidebar = document.getElementById('sidebarMenu');
         const overlay = document.getElementById('overlay');
 
-        // Función cambiar página
         function cambiarPagina(paginaId) {
             paginas.forEach(p => p.classList.remove('activa'));
             document.getElementById('pagina-' + paginaId).classList.add('activa');
@@ -749,17 +783,15 @@
             overlay.classList.remove('activo');
         });
 
-        // Modo oscuro (por defecto) con persistencia
+        // Modo oscuro
         const themeToggle = document.getElementById('themeToggle');
         const icon = themeToggle.querySelector('i');
 
-        // Comprobar preferencia guardada
         if (localStorage.getItem('theme') === 'light') {
             document.body.classList.add('light-mode');
             icon.classList.remove('fa-sun');
             icon.classList.add('fa-moon');
         } else {
-            // Por defecto, modo oscuro
             document.body.classList.remove('light-mode');
             icon.classList.add('fa-sun');
         }
@@ -775,6 +807,122 @@
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
             }
+        });
+
+        // Traducción
+        const translations = {
+            es: {
+                lore: "LORE",
+                enemigos: "ENEMIGOS",
+                equipo: "EQUIPO",
+                discord: "DISCORD",
+                lore_titulo: "LORE · CRÓNICAS DEL EXPLORADOR",
+                lore1_tit: "I. El hallazgo",
+                lore1: "Un explorador solitario cruzaba el denso bosque cuando, entre la niebla, divisó los tejados de una villa. Intrigado, se acercó. Las calles estaban vacías, los carteles colgaban rotos y el polvo cubría cada rincón. Decidió refugiarse en una casa entreabierta al caer la noche. El silencio era tan profundo que podía oír su propio corazón.",
+                lore2_tit: "II. La primera noche",
+                lore2: "Pasada la medianoche, un rumor de pasos torpes lo despertó. Salió con su arma preparada y se topó con figuras grotescas: <strong>zombies de un rojo nunca visto</strong>. Logró repelerlos, pero la confusión lo carcomía. ¿De dónde habían salido? La villa parecía deshabitada desde hacía años.",
+                lore3_tit: "III. Las Tierras Muertas",
+                lore3: "Al alba, inspeccionó cada palmo de la aldea. Encontró <strong>cuatro parcelas de tierra reseca, como si la vida hubiera huido de ellas</strong>. Las bautizó como \"Tierras Muertas\". Sin respuestas, decidió pasar una segunda noche para observar.",
+                lore4_tit: "IV. El origen",
+                lore4: "Bajo la luz de la luna, vio algo increíble: de aquellas tierras yermas, los zombies emergían directamente del suelo, como si fueran cosechados por una fuerza oscura. Sin atreverse a investigar más, huyó al amanecer.",
+                lore5_tit: "V. Teorías y misterios",
+                lore5: "De vuelta en su hogar, no dejó de darle vueltas. Algunos aldeanos de pueblos cercanos cuentan que hace décadas, <strong>una piedra morada cayó en esas cuatro tierras</strong>, trayendo una maldición. Otros susurran que un antiguo ritual de los primeros pobladores salió mal. El explorador nunca confirmó estas historias, pero el misterio sigue creciendo... Hasta hoy, nadie ha vuelto a esa villa, y las Tierras Muertas aguardan en silencio.",
+                cita: "“Se la pasó dándole vueltas al asunto, pero hasta ahora no ha podido resolverlo… y tal vez nunca lo haga.”",
+                enemigos_titulo: "ENEMIGOS · ESTADÍSTICAS",
+                velocidad: "Velocidad",
+                vida: "Vida",
+                informacion: "Información",
+                info_zombie_normal: "Zombie normal, nada del otro mundo, únicamente, que jamás vi un zombie de color rojo. ¡Qué raro!",
+                pregunta_rojo: "¿Alguien vio un zombie rojo?",
+                info_zombie_grande: "Similar al normal, nomás que este es mucho más grande y fuerte. Espera… <strong>¿¡Tiene músculos!?</strong>",
+                pregunta_musculos: "¿Alguien vio un zombie con músculos?",
+                equipo_titulo: "EQUIPO · DESARROLLADORES",
+                owner: "OWNER & DEVMANAGER",
+                creative: "CREATIVE MANAGER",
+                developers: "DEVELOPERS",
+                builders: "BUILDERS",
+                testers: "TESTERS",
+                discord_titulo: "DISCORD",
+                unete: "ÚNETE AL SERVIDOR",
+                discord_text: "charlas, actualizaciones y misterios sin resolver",
+                footer: "cuatro tierras, un misterio"
+            },
+            en: {
+                lore: "LORE",
+                enemigos: "ENEMIES",
+                equipo: "TEAM",
+                discord: "DISCORD",
+                lore_titulo: "LORE · EXPLORER'S CHRONICLES",
+                lore1_tit: "I. The discovery",
+                lore1: "A lone explorer was walking through the dense forest when, through the mist, he spotted the rooftops of a village. Intrigued, he approached. The streets were empty, signs hung broken, and dust covered every corner. He decided to take shelter in a half-open house as night fell. The silence was so deep he could hear his own heart.",
+                lore2_tit: "II. The first night",
+                lore2: "Past midnight, a rumble of clumsy footsteps woke him. He went out with his weapon ready and encountered grotesque figures: <strong>zombies of a never-before-seen red color</strong>. He managed to repel them, but confusion gnawed at him. Where had they come from? The village seemed uninhabited for years.",
+                lore3_tit: "III. The Dead Lands",
+                lore3: "At dawn, he inspected every inch of the village. He found <strong>four plots of dry land, as if life had fled from them</strong>. He named them \"Dead Lands.\" Without answers, he decided to stay a second night to observe.",
+                lore4_tit: "IV. The origin",
+                lore4: "Under the moonlight, he saw something incredible: from those barren lands, zombies emerged directly from the ground, as if harvested by a dark force. Not daring to investigate further, he fled at daybreak.",
+                lore5_tit: "V. Theories and mysteries",
+                lore5: "Back home, he kept pondering. Some villagers from nearby towns say that decades ago, <strong>a purple stone fell on those four lands</strong>, bringing a curse. Others whisper that an ancient ritual of the first settlers went wrong. The explorer never confirmed these stories, but the mystery keeps growing... To this day, no one has returned to that village, and the Dead Lands wait in silence.",
+                cita: "“He kept turning it over in his mind, but so far he hasn't been able to solve it... and maybe he never will.”",
+                enemigos_titulo: "ENEMIES · STATISTICS",
+                velocidad: "Speed",
+                vida: "Health",
+                informacion: "Info",
+                info_zombie_normal: "Normal zombie, nothing special, except that I've never seen a red zombie. How weird!",
+                pregunta_rojo: "Has anyone seen a red zombie?",
+                info_zombie_grande: "Similar to the normal one, only this one is much bigger and stronger. Wait... <strong>Does it have muscles!?</strong>",
+                pregunta_musculos: "Has anyone seen a zombie with muscles?",
+                equipo_titulo: "TEAM · DEVELOPERS",
+                owner: "OWNER & DEVMANAGER",
+                creative: "CREATIVE MANAGER",
+                developers: "DEVELOPERS",
+                builders: "BUILDERS",
+                testers: "TESTERS",
+                discord_titulo: "DISCORD",
+                unete: "JOIN THE SERVER",
+                discord_text: "chats, updates and unsolved mysteries",
+                footer: "four lands, one mystery"
+            }
+        };
+
+        const idiomaBtns = document.querySelectorAll('.idioma-btn');
+        let idiomaActual = 'es';
+
+        function aplicarIdioma(idioma) {
+            const elementos = document.querySelectorAll('[data-i18n]');
+            elementos.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[idioma] && translations[idioma][key]) {
+                    if (el.tagName === 'P' || el.tagName === 'DIV' || el.classList.contains('cita') || (el.tagName === 'SPAN' && el.parentElement.tagName === 'BUTTON')) {
+                        el.innerHTML = translations[idioma][key];
+                    } else {
+                        el.textContent = translations[idioma][key];
+                    }
+                }
+            });
+            idiomaBtns.forEach(btn => {
+                btn.classList.toggle('activo', btn.dataset.idioma === idioma);
+            });
+            idiomaActual = idioma;
+        }
+
+        idiomaBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                aplicarIdioma(btn.dataset.idioma);
+            });
+        });
+
+        aplicarIdioma('es');
+
+        // Cerrar menú si se hace clic en un enlace (para móvil)
+        const devLinks = document.querySelectorAll('.miembro-nombre a, .nombre-link a');
+        devLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('abierto');
+                    overlay.classList.remove('activo');
+                }
+            });
         });
     </script>
 </body>
