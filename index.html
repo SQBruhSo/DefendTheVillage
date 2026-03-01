@@ -17,7 +17,7 @@
             box-sizing: border-box;
         }
 
-        /* Fondo con imagen - DTV_Miniatura.png (ocupa toda la pantalla) */
+        /* Fondo con imagen - DTV_Miniatura.png */
         body::before {
             content: "";
             position: fixed;
@@ -34,22 +34,22 @@
             z-index: -1;
         }
 
-        /* Variables de modo oscuro (por defecto) con fondos semitransparentes */
+        /* Variables de modo oscuro (por defecto) con fondos más transparentes */
         :root {
             --bg-body: #1a1a1a;
-            --bg-contenedor: rgba(45, 45, 45, 0.85);
+            --bg-contenedor: rgba(45, 45, 45, 0.7); /* Más transparente para ver la imagen */
             --text-color: #e0e0e0;
             --border-color: #444;
             --acento: #c06e6f;
             --acento-claro: #a05a5b;
-            --bg-tarjeta: rgba(58, 58, 58, 0.9);
-            --bg-secundario: rgba(74, 74, 74, 0.9);
-            --bg-cita: rgba(58, 58, 58, 0.9);
+            --bg-tarjeta: rgba(58, 58, 58, 0.8);
+            --bg-secundario: rgba(74, 74, 74, 0.8);
+            --bg-cita: rgba(58, 58, 58, 0.8);
             --sombra: #000000;
             --icono-color: #e0e0e0;
         }
 
-        /* Variables de modo claro */
+        /* Variables de modo claro (menos transparente para mantener legibilidad) */
         body.light-mode {
             --bg-body: #c06e6f;
             --bg-contenedor: rgba(255, 255, 255, 0.85);
@@ -618,7 +618,6 @@
     </style>
 </head>
 <body>
-    <!-- El contenido sigue igual que antes -->
     <div class="contenedor">
         <div class="header">
             <h1>DEFEND THE VILLAGE</h1>
