@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defend the Villageo</title>
+    <title>Defend the Village</title>
     <!-- Arimo font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
             box-sizing: border-box;
         }
 
-        /* Fondo con imagen - DTV_Miniatura.png */
+        /* Fondo con imagen - DTV_Miniatura.png (ocupa toda la pantalla) */
         body::before {
             content: "";
             position: fixed;
@@ -34,17 +34,17 @@
             z-index: -1;
         }
 
-        /* Variables de modo oscuro (por defecto) */
+        /* Variables de modo oscuro (por defecto) con fondos semitransparentes */
         :root {
             --bg-body: #1a1a1a;
-            --bg-contenedor: #2d2d2d;
+            --bg-contenedor: rgba(45, 45, 45, 0.85);
             --text-color: #e0e0e0;
             --border-color: #444;
             --acento: #c06e6f;
             --acento-claro: #a05a5b;
-            --bg-tarjeta: #3a3a3a;
-            --bg-secundario: #4a4a4a;
-            --bg-cita: #3a3a3a;
+            --bg-tarjeta: rgba(58, 58, 58, 0.9);
+            --bg-secundario: rgba(74, 74, 74, 0.9);
+            --bg-cita: rgba(58, 58, 58, 0.9);
             --sombra: #000000;
             --icono-color: #e0e0e0;
         }
@@ -52,14 +52,14 @@
         /* Variables de modo claro */
         body.light-mode {
             --bg-body: #c06e6f;
-            --bg-contenedor: #ffffff;
+            --bg-contenedor: rgba(255, 255, 255, 0.85);
             --text-color: #000000;
             --border-color: #000000;
             --acento: #c06e6f;
             --acento-claro: #d48f8f;
-            --bg-tarjeta: #ffffff;
-            --bg-secundario: #f0f0f0;
-            --bg-cita: #f0f0f0;
+            --bg-tarjeta: rgba(255, 255, 255, 0.9);
+            --bg-secundario: rgba(240, 240, 240, 0.9);
+            --bg-cita: rgba(240, 240, 240, 0.9);
             --sombra: #000000;
             --icono-color: #c06e6f;
         }
@@ -484,7 +484,6 @@
             border-bottom-color: var(--border-color);
         }
 
-        /* Efecto pop para los enlaces de desarrolladores en móvil */
         .miembro-nombre a:active {
             transform: scale(0.95);
             transition: transform 0.1s;
@@ -619,6 +618,7 @@
     </style>
 </head>
 <body>
+    <!-- El contenido sigue igual que antes -->
     <div class="contenedor">
         <div class="header">
             <h1>DEFEND THE VILLAGE</h1>
