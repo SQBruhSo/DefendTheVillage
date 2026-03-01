@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defend the Village · lore · equipo</title>
+    <!-- Arimo font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #c06e6f;
+            font-family: 'Arimo', sans-serif;
+            color: #000000;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .contenedor {
+            width: 100%;
+            min-height: 100vh;
+            background: #ffffff;
+            border-left: 4px solid #000000;
+            border-right: 4px solid #000000;
+            box-shadow: none;
+            padding: 2rem 2rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            border-bottom: 4px solid #000000;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 10vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #000000;
+            line-height: 1.1;
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0 2rem 0;
+            border-bottom: 3px solid #000000;
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 2px solid transparent;
+            font-family: 'Arimo', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            color: #000000;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 0 1 auto;
+        }
+
+        .tab-btn i {
+            color: #c06e6f;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        .tab-btn:hover {
+            background: #c06e6f;
+            color: #ffffff;
+            border: 2px solid #000000;
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0 #000000;
+        }
+
+        .tab-btn:hover i {
+            color: #ffffff;
+        }
+
+        .tab-btn.activo {
+            background: #c06e6f;
+            color: #ffffff;
+            border: 2px solid #000000;
+            box-shadow: 4px 4px 0 #000000;
+        }
+
+        .tab-btn.activo i {
+            color: #ffffff;
+        }
+
+        .pagina {
+            display: none;
+            background: #ffffff;
+            border: 3px solid #000000;
+            padding: 1.5rem;
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        .pagina.activa {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border-left: 8px solid #c06e6f;
+            padding-left: 1.2rem;
+            line-height: 1.2;
+        }
+
+        h2 i {
+            margin-right: 0.8rem;
+            color: #c06e6f;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 1.5rem 0 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-bottom: 2px solid #c06e6f;
+            padding-bottom: 0.3rem;
+        }
+
+        h3 i {
+            color: #c06e6f;
+            font-size: 1.2rem;
+        }
+
+        .lore-extendido {
+            background: #fafafa;
+            padding: 1.2rem;
+            border: 1px solid #ccc;
+        }
+
+        .lore-extendido p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .cita {
+            background: #f0f0f0;
+            border: 3px solid #000000;
+            padding: 1.2rem 1.5rem;
+            font-size: 1.1rem;
+            font-style: italic;
+            font-weight: 600;
+            border-left: 12px solid #c06e6f;
+            margin-top: 2rem;
+        }
+
+        .enemigos-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .enemigo-card {
+            border: 3px solid #000000;
+            padding: 1.5rem;
+            background: #ffffff;
+            box-shadow: 6px 6px 0 #c06e6f;
+            transition: all 0.1s ease;
+        }
+
+        .enemigo-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0 #c06e6f;
+        }
+
+        .enemigo-header {
+            border-bottom: 3px solid #c06e6f;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem 2.5rem;
+            background: #f0f0f0;
+            border: 2px solid #000000;
+            padding: 0.8rem 1.2rem;
+            margin: 1rem 0;
+            font-weight: 600;
+        }
+
+        .stat-item {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .stat-label {
+            font-weight: 700;
+            color: #c06e6f;
+        }
+
+        .pregunta {
+            margin-top: 1rem;
+            font-style: italic;
+            font-weight: 600;
+            color: #c06e6f;
+            border-left: 4px solid #000000;
+            padding-left: 1rem;
+        }
+
+        .owner-bloque {
+            background: #c06e6f;
+            color: #ffffff;
+            border: 4px solid #000000;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            word-break: break-word;
+        }
+
+        .equipo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .miembro-card {
+            border: 3px solid #000000;
+            padding: 1.2rem;
+            background: #ffffff;
+            box-shadow: 5px 5px 0 #c06e6f;
+            transition: all 0.1s ease;
+        }
+
+        .miembro-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 #c06e6f;
+        }
+
+        .miembro-rol {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #c06e6f;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .miembro-nombre {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            word-break: break-word;
+        }
+
+        .miembro-nombre a {
+            color: #000000;
+            text-decoration: none;
+            border-bottom: 3px solid #c06e6f;
+            transition: all 0.2s ease;
+            padding: 0.1rem 0;
+        }
+
+        .miembro-nombre a:hover {
+            background: #c06e6f;
+            color: #ffffff;
+            padding: 0.2rem 0.5rem;
+            border-bottom-color: #000000;
+        }
+
+        .nombres-multiples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .nombre-link {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .nombre-link a {
+            color: #000000;
+            text-decoration: none;
+            border-bottom: 3px solid #c06e6f;
+            padding-bottom: 0.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .nombre-link a:hover {
+            background: #c06e6f;
+            color: #ffffff;
+            padding: 0.2rem 0.5rem;
+        }
+
+        .discord-block {
+            background: #c06e6f;
+            border: 4px solid #000000;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .discord-block i {
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .btn-discord {
+            display: inline-block;
+            background: #ffffff;
+            color: #000000;
+            border: 4px solid #000000;
+            padding: 0.7rem 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 1.2rem 0 0.5rem;
+            font-size: 1.1rem;
+            box-shadow: 5px 5px 0 #000000;
+            transition: all 0.2s ease;
+            word-break: break-word;
+        }
+
+        .btn-discord:hover {
+            background: #f0f0f0;
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 #000000;
+        }
+
+        .footer-note {
+            text-align: right;
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: #c06e6f;
+            border-top: 2px dashed #c06e6f;
+            padding-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <div class="header">
+            <h1>DEFEND THE VILLAGE</h1>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="tab-btn activo" data-pagina="lore"><i class="fas fa-book-open"></i> LORE</button>
+            <button class="tab-btn" data-pagina="enemigos"><i class="fas fa-skull"></i> ENEMIGOS</button>
+            <button class="tab-btn" data-pagina="equipo"><i class="fas fa-users"></i> EQUIPO</button>
+            <button class="tab-btn" data-pagina="discord"><i class="fab fa-discord"></i> DISCORD</button>
+        </div>
+
+        <div id="pagina-lore" class="pagina activa">
+            <h2><i class="fas fa-scroll"></i> LORE · CRÓNICAS DEL EXPLORADOR</h2>
+            <div class="lore-extendido">
+                <h3><i class="fas fa-tree"></i> I. El hallazgo</h3>
+                <p>Un explorador solitario cruzaba el denso bosque cuando, entre la niebla, divisó los tejados de una villa. Intrigado, se acercó. Las calles estaban vacías, los carteles colgaban rotos y el polvo cubría cada rincón. Decidió refugiarse en una casa entreabierta al caer la noche. El silencio era tan profundo que podía oír su propio corazón.</p>
+
+                <h3><i class="fas fa-moon"></i> II. La primera noche</h3>
+                <p>Pasada la medianoche, un rumor de pasos torpes lo despertó. Salió con su arma preparada y se topó con figuras grotescas: <strong>zombies de un rojo nunca visto</strong>. Logró repelerlos, pero la confusión lo carcomía. ¿De dónde habían salido? La villa parecía deshabitada desde hacía años.</p>
+
+                <h3><i class="fas fa-map"></i> III. Las Tierras Muertas</h3>
+                <p>Al alba, inspeccionó cada palmo de la aldea. Encontró <strong>cuatro parcelas de tierra reseca, como si la vida hubiera huido de ellas</strong>. Las bautizó como "Tierras Muertas". Sin respuestas, decidió pasar una segunda noche para observar.</p>
+
+                <h3><i class="fas fa-eye"></i> IV. El origen</h3>
+                <p>Bajo la luz de la luna, vio algo increíble: de aquellas tierras yermas, los zombies emergían directamente del suelo, como si fueran cosechados por una fuerza oscura. Sin atreverse a investigar más, huyó al amanecer.</p>
+
+                <h3><i class="fas fa-question-circle"></i> V. Teorías y misterios</h3>
+                <p>De vuelta en su hogar, no dejó de darle vueltas. Algunos aldeanos de pueblos cercanos cuentan que hace décadas, <strong>una piedra morada cayó en esas cuatro tierras</strong>, trayendo una maldición. Otros susurran que un antiguo ritual de los primeros pobladores salió mal. El explorador nunca confirmó estas historias, pero el misterio sigue creciendo... Hasta hoy, nadie ha vuelto a esa villa, y las Tierras Muertas aguardan en silencio.</p>
+            </div>
+            <div class="cita">
+                <i class="fas fa-quote-left" style="color:#c06e6f; margin-right:0.5rem;"></i> 
+                “Se la pasó dándole vueltas al asunto, pero hasta ahora no ha podido resolverlo… y tal vez nunca lo haga.”
+            </div>
+        </div>
+
+        <div id="pagina-enemigos" class="pagina">
+            <h2><i class="fas fa-skull"></i> ENEMIGOS · ESTADÍSTICAS</h2>
+            <div class="enemigos-grid">
+                <div class="enemigo-card">
+                    <div class="enemigo-header">
+                        <h3 style="margin:0;">ZOMBIE NORMAL</h3>
+                    </div>
+                    <div class="stats">
+                        <div class="stat-item"><span class="stat-label">Velocidad:</span> <strong>16</strong></div>
+                        <div class="stat-item"><span class="stat-label">Vida:</span> <strong>65</strong></div>
+                    </div>
+                    <div>
+                        <p><strong>Información:</strong> Zombie normal, nada del otro mundo, únicamente, que jamás vi un zombie de color rojo. ¡Qué raro!</p>
+                        <div class="pregunta">¿Alguien vio un zombie rojo?</div>
+                    </div>
+                </div>
+
+                <div class="enemigo-card">
+                    <div class="enemigo-header">
+                        <h3 style="margin:0;">ZOMBIE GRANDE</h3>
+                    </div>
+                    <div class="stats">
+                        <div class="stat-item"><span class="stat-label">Velocidad:</span> <strong>12.5</strong></div>
+                        <div class="stat-item"><span class="stat-label">Vida:</span> <strong>250</strong></div>
+                    </div>
+                    <div>
+                        <p><strong>Información:</strong> Similar al normal, nomás que este es mucho más grande y fuerte. Espera… <strong>¿¡Tiene músculos!?</strong></p>
+                        <div class="pregunta">¿Alguien vio un zombie con músculos?</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pagina-equipo" class="pagina">
+            <h2><i class="fas fa-users"></i> EQUIPO · DESARROLLADORES</h2>
+
+            <div class="owner-bloque">
+                <i class="fas fa-crown"></i> OWNER & DEVMANAGER: <strong>SQBruhSoOfficial</strong>
+            </div>
+
+            <div class="equipo-grid">
+                <div class="miembro-card">
+                    <div class="miembro-rol">CREATIVE MANAGER</div>
+                    <div class="miembro-nombre">
+                        <a href="https://www.roblox.com/es/users/3120134074/profile" target="_blank">m0zzz_xd</a>
+                    </div>
+                </div>
+
+                <div class="miembro-card">
+                    <div class="miembro-rol">DEVELOPERS</div>
+                    <div class="nombres-multiples">
+                        <span class="nombre-link"><a href="https://www.roblox.com/es/users/1050188336/profile" target="_blank">jorduc89</a></span>
+                        <span class="nombre-link"><a href="https://www.roblox.com/es/users/9927041122/profile" target="_blank">SQBruhSoOfficial</a></span>
+                    </div>
+                </div>
+
+                <div class="miembro-card">
+                    <div class="miembro-rol">BUILDERS</div>
+                    <div class="miembro-nombre">
+                        <a href="https://www.roblox.com/es/users/1050188336/profile" target="_blank">jorduc89</a>
+                    </div>
+                </div>
+
+                <div class="miembro-card">
+                    <div class="miembro-rol">TESTERS</div>
+                    <div class="miembro-nombre">
+                        <a href="https://www.roblox.com/es/users/3120134074/profile" target="_blank">m0zzz_xd</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pagina-discord" class="pagina">
+            <h2><i class="fab fa-discord"></i> DISCORD</h2>
+            <div class="discord-block">
+                <i class="fab fa-discord"></i>
+                <p style="font-size:1.5rem; font-weight:700;">ÚNETE AL SERVIDOR</p>
+                <!-- Enlace actualizado -->
+                <a href="https://discord.gg/cQthVHrdbF" target="_blank" class="btn-discord">discord.gg/cQthVHrdbF</a>
+                <p style="margin-top:1.2rem;">charlas, actualizaciones y misterios sin resolver</p>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            cuatro tierras, un misterio
+        </div>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab-btn');
+        const paginas = document.querySelectorAll('.pagina');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('activo'));
+                paginas.forEach(p => {
+                    p.classList.remove('activa');
+                });
+
+                tab.classList.add('activo');
+                const paginaId = 'pagina-' + tab.getAttribute('data-pagina');
+                const paginaActiva = document.getElementById(paginaId);
+                paginaActiva.classList.add('activa');
+            });
+        });
+    </script>
+</body>
+</html>
