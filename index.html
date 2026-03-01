@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defend the Village</title>
+    <title>Defend the Village · lore · equipo</title>
     <!-- Arimo font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,34 +17,66 @@
             box-sizing: border-box;
         }
 
+        /* Variables de modo claro (por defecto) */
+        :root {
+            --bg-body: #c06e6f;
+            --bg-contenedor: #ffffff;
+            --text-color: #000000;
+            --border-color: #000000;
+            --acento: #c06e6f;
+            --acento-claro: #d48f8f;
+            --bg-tarjeta: #ffffff;
+            --bg-secundario: #f0f0f0;
+            --bg-cita: #f0f0f0;
+            --sombra: #000000;
+            --icono-color: #c06e6f;
+        }
+
+        /* Variables de modo oscuro */
+        body.dark-mode {
+            --bg-body: #1a1a1a;
+            --bg-contenedor: #2d2d2d;
+            --text-color: #e0e0e0;
+            --border-color: #444;
+            --acento: #c06e6f;
+            --acento-claro: #a05a5b;
+            --bg-tarjeta: #3a3a3a;
+            --bg-secundario: #4a4a4a;
+            --bg-cita: #3a3a3a;
+            --sombra: #000000;
+            --icono-color: #e0e0e0;
+        }
+
         body {
-            background: #c06e6f;
+            background: var(--bg-body);
             font-family: 'Arimo', sans-serif;
-            color: #000000;
+            color: var(--text-color);
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 0;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .contenedor {
             width: 100%;
             min-height: 100vh;
-            background: #ffffff;
-            border-left: 4px solid #000000;
-            border-right: 4px solid #000000;
+            background: var(--bg-contenedor);
+            border-left: 4px solid var(--border-color);
+            border-right: 4px solid var(--border-color);
             box-shadow: none;
             padding: 2rem 2rem 2rem 2rem;
             display: flex;
             flex-direction: column;
             position: relative;
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
         /* Header */
         .header {
-            border-bottom: 4px solid #000000;
+            border-bottom: 4px solid var(--border-color);
             padding-bottom: 1rem;
             margin-bottom: 1.5rem;
             display: flex;
@@ -56,39 +88,49 @@
             font-size: clamp(2rem, 8vw, 4rem);
             font-weight: 700;
             letter-spacing: -0.5px;
-            color: #000000;
+            color: var(--text-color);
             line-height: 1.1;
             margin-bottom: 0;
         }
 
-        /* Botón menú hamburguesa (visible solo en móvil) */
-        .menu-toggle {
-            display: none;
+        /* Botones del header: menú hamburguesa y modo oscuro */
+        .header-buttons {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .menu-toggle, .theme-toggle {
             background: none;
-            border: 2px solid #000000;
+            border: 2px solid var(--border-color);
             font-size: 1.8rem;
             padding: 0.3rem 0.8rem;
             cursor: pointer;
-            color: #000000;
-            background-color: #ffffff;
-            box-shadow: 3px 3px 0 #000000;
+            color: var(--text-color);
+            background-color: var(--bg-contenedor);
+            box-shadow: 3px 3px 0 var(--sombra);
             transition: all 0.1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .menu-toggle:hover {
-            background-color: #c06e6f;
+
+        .menu-toggle:hover, .theme-toggle:hover {
+            background-color: var(--acento);
             color: #ffffff;
+            border-color: var(--border-color);
         }
 
         /* Menú lateral para móvil */
         .sidebar-menu {
             position: fixed;
             top: 0;
-            left: -280px; /* oculto */
+            left: -280px;
             width: 260px;
             height: 100vh;
-            background: #ffffff;
-            border-right: 4px solid #000000;
-            box-shadow: 5px 0 0 #000000;
+            background: var(--bg-contenedor);
+            border-right: 4px solid var(--border-color);
+            box-shadow: 5px 0 0 var(--sombra);
             transition: left 0.3s ease;
             padding: 2rem 1rem;
             z-index: 1000;
@@ -103,33 +145,33 @@
 
         .sidebar-menu .menu-item {
             background: transparent;
-            border: 2px solid #000000;
+            border: 2px solid var(--border-color);
             font-family: 'Arimo', sans-serif;
             font-size: 1.2rem;
             font-weight: 600;
             padding: 1rem;
             cursor: pointer;
-            color: #000000;
+            color: var(--text-color);
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
             gap: 0.8rem;
             width: 100%;
             text-align: left;
-            box-shadow: 4px 4px 0 #000000;
+            box-shadow: 4px 4px 0 var(--sombra);
             margin-bottom: 0.5rem;
         }
 
         .sidebar-menu .menu-item i {
-            color: #c06e6f;
+            color: var(--icono-color);
             font-size: 1.2rem;
         }
 
         .sidebar-menu .menu-item:hover {
-            background: #c06e6f;
+            background: var(--acento);
             color: #ffffff;
             transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 #000000;
+            box-shadow: 6px 6px 0 var(--sombra);
         }
 
         .sidebar-menu .menu-item:hover i {
@@ -137,15 +179,15 @@
         }
 
         .sidebar-menu .menu-item.activo {
-            background: #c06e6f;
+            background: var(--acento);
             color: #ffffff;
-            box-shadow: 4px 4px 0 #000000;
+            box-shadow: 4px 4px 0 var(--sombra);
         }
         .sidebar-menu .menu-item.activo i {
             color: #ffffff;
         }
 
-        /* Overlay para cerrar menú al hacer clic fuera */
+        /* Overlay */
         .overlay {
             position: fixed;
             top: 0;
@@ -160,13 +202,13 @@
             display: block;
         }
 
-        /* Pestañas para desktop */
+        /* Pestañas desktop */
         .nav-tabs {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
             margin: 1rem 0 2rem 0;
-            border-bottom: 3px solid #000000;
+            border-bottom: 3px solid var(--border-color);
             padding-bottom: 0.5rem;
         }
 
@@ -178,7 +220,7 @@
             font-weight: 600;
             padding: 0.6rem 1.5rem;
             cursor: pointer;
-            color: #000000;
+            color: var(--text-color);
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
@@ -187,17 +229,17 @@
         }
 
         .tab-btn i {
-            color: #c06e6f;
+            color: var(--icono-color);
             font-size: 1.1rem;
             transition: color 0.2s;
         }
 
         .tab-btn:hover {
-            background: #c06e6f;
+            background: var(--acento);
             color: #ffffff;
-            border: 2px solid #000000;
+            border: 2px solid var(--border-color);
             transform: translateY(-2px);
-            box-shadow: 4px 4px 0 #000000;
+            box-shadow: 4px 4px 0 var(--sombra);
         }
 
         .tab-btn:hover i {
@@ -205,10 +247,10 @@
         }
 
         .tab-btn.activo {
-            background: #c06e6f;
+            background: var(--acento);
             color: #ffffff;
-            border: 2px solid #000000;
-            box-shadow: 4px 4px 0 #000000;
+            border: 2px solid var(--border-color);
+            box-shadow: 4px 4px 0 var(--sombra);
         }
 
         .tab-btn.activo i {
@@ -218,11 +260,12 @@
         /* Páginas */
         .pagina {
             display: none;
-            background: #ffffff;
-            border: 3px solid #000000;
+            background: var(--bg-contenedor);
+            border: 3px solid var(--border-color);
             padding: 1.5rem;
             margin-bottom: 0;
             flex: 1;
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
         .pagina.activa {
@@ -245,14 +288,15 @@
             font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            border-left: 8px solid #c06e6f;
+            border-left: 8px solid var(--acento);
             padding-left: 1.2rem;
             line-height: 1.2;
+            color: var(--text-color);
         }
 
         h2 i {
             margin-right: 0.8rem;
-            color: #c06e6f;
+            color: var(--acento);
         }
 
         h3 {
@@ -262,20 +306,22 @@
             display: flex;
             align-items: center;
             gap: 0.6rem;
-            border-bottom: 2px solid #c06e6f;
+            border-bottom: 2px solid var(--acento);
             padding-bottom: 0.3rem;
+            color: var(--text-color);
         }
 
         h3 i {
-            color: #c06e6f;
+            color: var(--acento);
             font-size: 1.2rem;
         }
 
         /* Lore */
         .lore-extendido {
-            background: #fafafa;
+            background: var(--bg-secundario);
             padding: 1.2rem;
-            border: 1px solid #ccc;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s;
         }
 
         .lore-extendido p {
@@ -284,14 +330,15 @@
         }
 
         .cita {
-            background: #f0f0f0;
-            border: 3px solid #000000;
+            background: var(--bg-cita);
+            border: 3px solid var(--border-color);
             padding: 1.2rem 1.5rem;
             font-size: 1.1rem;
             font-style: italic;
             font-weight: 600;
-            border-left: 12px solid #c06e6f;
+            border-left: 12px solid var(--acento);
             margin-top: 2rem;
+            color: var(--text-color);
         }
 
         /* Enemigos */
@@ -302,20 +349,20 @@
         }
 
         .enemigo-card {
-            border: 3px solid #000000;
+            border: 3px solid var(--border-color);
             padding: 1.5rem;
-            background: #ffffff;
-            box-shadow: 6px 6px 0 #c06e6f;
+            background: var(--bg-tarjeta);
+            box-shadow: 6px 6px 0 var(--acento);
             transition: all 0.1s ease;
         }
 
         .enemigo-card:hover {
             transform: translate(-2px, -2px);
-            box-shadow: 8px 8px 0 #c06e6f;
+            box-shadow: 8px 8px 0 var(--acento);
         }
 
         .enemigo-header {
-            border-bottom: 3px solid #c06e6f;
+            border-bottom: 3px solid var(--acento);
             padding-bottom: 0.5rem;
             margin-bottom: 1.2rem;
         }
@@ -324,11 +371,12 @@
             display: flex;
             flex-wrap: wrap;
             gap: 1.5rem 2.5rem;
-            background: #f0f0f0;
-            border: 2px solid #000000;
+            background: var(--bg-secundario);
+            border: 2px solid var(--border-color);
             padding: 0.8rem 1.2rem;
             margin: 1rem 0;
             font-weight: 600;
+            color: var(--text-color);
         }
 
         .stat-item {
@@ -338,23 +386,23 @@
 
         .stat-label {
             font-weight: 700;
-            color: #c06e6f;
+            color: var(--acento);
         }
 
         .pregunta {
             margin-top: 1rem;
             font-style: italic;
             font-weight: 600;
-            color: #c06e6f;
-            border-left: 4px solid #000000;
+            color: var(--acento);
+            border-left: 4px solid var(--border-color);
             padding-left: 1rem;
         }
 
         /* Equipo */
         .owner-bloque {
-            background: #c06e6f;
+            background: var(--acento);
             color: #ffffff;
-            border: 4px solid #000000;
+            border: 4px solid var(--border-color);
             padding: 1rem 1.5rem;
             margin-bottom: 2rem;
             font-size: 1.2rem;
@@ -369,22 +417,22 @@
         }
 
         .miembro-card {
-            border: 3px solid #000000;
+            border: 3px solid var(--border-color);
             padding: 1.2rem;
-            background: #ffffff;
-            box-shadow: 5px 5px 0 #c06e6f;
+            background: var(--bg-tarjeta);
+            box-shadow: 5px 5px 0 var(--acento);
             transition: all 0.1s ease;
         }
 
         .miembro-card:hover {
             transform: translate(-2px, -2px);
-            box-shadow: 7px 7px 0 #c06e6f;
+            box-shadow: 7px 7px 0 var(--acento);
         }
 
         .miembro-rol {
             font-size: 0.75rem;
             text-transform: uppercase;
-            color: #c06e6f;
+            color: var(--acento);
             font-weight: 700;
             margin-bottom: 0.3rem;
         }
@@ -394,21 +442,22 @@
             font-weight: 700;
             margin-bottom: 0.5rem;
             word-break: break-word;
+            color: var(--text-color);
         }
 
         .miembro-nombre a {
-            color: #000000;
+            color: var(--text-color);
             text-decoration: none;
-            border-bottom: 3px solid #c06e6f;
+            border-bottom: 3px solid var(--acento);
             transition: all 0.2s ease;
             padding: 0.1rem 0;
         }
 
         .miembro-nombre a:hover {
-            background: #c06e6f;
+            background: var(--acento);
             color: #ffffff;
             padding: 0.2rem 0.5rem;
-            border-bottom-color: #000000;
+            border-bottom-color: var(--border-color);
         }
 
         .nombres-multiples {
@@ -424,23 +473,23 @@
         }
 
         .nombre-link a {
-            color: #000000;
+            color: var(--text-color);
             text-decoration: none;
-            border-bottom: 3px solid #c06e6f;
+            border-bottom: 3px solid var(--acento);
             padding-bottom: 0.1rem;
             transition: all 0.2s ease;
         }
 
         .nombre-link a:hover {
-            background: #c06e6f;
+            background: var(--acento);
             color: #ffffff;
             padding: 0.2rem 0.5rem;
         }
 
         /* Discord */
         .discord-block {
-            background: #c06e6f;
-            border: 4px solid #000000;
+            background: var(--acento);
+            border: 4px solid var(--border-color);
             padding: 2rem 1.5rem;
             text-align: center;
             color: #ffffff;
@@ -454,23 +503,23 @@
 
         .btn-discord {
             display: inline-block;
-            background: #ffffff;
-            color: #000000;
-            border: 4px solid #000000;
+            background: var(--bg-contenedor);
+            color: var(--text-color);
+            border: 4px solid var(--border-color);
             padding: 0.7rem 2rem;
             font-weight: 700;
             text-decoration: none;
             margin: 1.2rem 0 0.5rem;
             font-size: 1.1rem;
-            box-shadow: 5px 5px 0 #000000;
+            box-shadow: 5px 5px 0 var(--sombra);
             transition: all 0.2s ease;
             word-break: break-word;
         }
 
         .btn-discord:hover {
-            background: #f0f0f0;
+            background: var(--bg-secundario);
             transform: translate(-2px, -2px);
-            box-shadow: 7px 7px 0 #000000;
+            box-shadow: 7px 7px 0 var(--sombra);
         }
 
         /* Footer */
@@ -478,12 +527,12 @@
             text-align: right;
             margin-top: 1.5rem;
             font-size: 0.8rem;
-            color: #c06e6f;
-            border-top: 2px dashed #c06e6f;
+            color: var(--acento);
+            border-top: 2px dashed var(--acento);
             padding-top: 0.5rem;
         }
 
-        /* Media query para móvil: ocultar pestañas y mostrar botón hamburguesa */
+        /* Media query para móvil */
         @media (max-width: 768px) {
             .nav-tabs {
                 display: none;
@@ -504,7 +553,10 @@
     <div class="contenedor">
         <div class="header">
             <h1>DEFEND THE VILLAGE</h1>
-            <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+            <div class="header-buttons">
+                <button class="theme-toggle" id="themeToggle" title="Modo oscuro/claro"><i class="fas fa-moon"></i></button>
+                <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+            </div>
         </div>
 
         <!-- Menú lateral para móvil -->
@@ -516,7 +568,7 @@
         </div>
         <div class="overlay" id="overlay"></div>
 
-        <!-- Pestañas para desktop -->
+        <!-- Pestañas desktop -->
         <div class="nav-tabs" id="desktopTabs">
             <button class="tab-btn activo" data-pagina="lore"><i class="fas fa-book-open"></i> LORE</button>
             <button class="tab-btn" data-pagina="enemigos"><i class="fas fa-skull"></i> ENEMIGOS</button>
@@ -544,7 +596,7 @@
                 <p>De vuelta en su hogar, no dejó de darle vueltas. Algunos aldeanos de pueblos cercanos cuentan que hace décadas, <strong>una piedra morada cayó en esas cuatro tierras</strong>, trayendo una maldición. Otros susurran que un antiguo ritual de los primeros pobladores salió mal. El explorador nunca confirmó estas historias, pero el misterio sigue creciendo... Hasta hoy, nadie ha vuelto a esa villa, y las Tierras Muertas aguardan en silencio.</p>
             </div>
             <div class="cita">
-                <i class="fas fa-quote-left" style="color:#c06e6f; margin-right:0.5rem;"></i> 
+                <i class="fas fa-quote-left" style="color:var(--acento); margin-right:0.5rem;"></i> 
                 “Se la pasó dándole vueltas al asunto, pero hasta ahora no ha podido resolverlo… y tal vez nunca lo haga.”
             </div>
         </div>
@@ -637,7 +689,7 @@
     </div>
 
     <script>
-        // Elementos
+        // Elementos comunes
         const tabs = document.querySelectorAll('.tab-btn');
         const menuItems = document.querySelectorAll('.menu-item');
         const paginas = document.querySelectorAll('.pagina');
@@ -645,44 +697,26 @@
         const sidebar = document.getElementById('sidebarMenu');
         const overlay = document.getElementById('overlay');
 
-        // Función para cambiar de página
+        // Función cambiar página
         function cambiarPagina(paginaId) {
-            // Desactivar todas las páginas
             paginas.forEach(p => p.classList.remove('activa'));
-            // Activar la nueva
             document.getElementById('pagina-' + paginaId).classList.add('activa');
 
-            // Actualizar clases activas en pestañas desktop
             tabs.forEach(tab => {
-                if (tab.dataset.pagina === paginaId) {
-                    tab.classList.add('activo');
-                } else {
-                    tab.classList.remove('activo');
-                }
+                tab.classList.toggle('activo', tab.dataset.pagina === paginaId);
             });
-
-            // Actualizar clases activas en menú lateral
             menuItems.forEach(item => {
-                if (item.dataset.pagina === paginaId) {
-                    item.classList.add('activo');
-                } else {
-                    item.classList.remove('activo');
-                }
+                item.classList.toggle('activo', item.dataset.pagina === paginaId);
             });
         }
 
-        // Event listeners para pestañas desktop
         tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                cambiarPagina(tab.dataset.pagina);
-            });
+            tab.addEventListener('click', () => cambiarPagina(tab.dataset.pagina));
         });
 
-        // Event listeners para menú lateral
         menuItems.forEach(item => {
             item.addEventListener('click', () => {
                 cambiarPagina(item.dataset.pagina);
-                // Cerrar menú en móvil
                 if (window.innerWidth <= 768) {
                     sidebar.classList.remove('abierto');
                     overlay.classList.remove('activo');
@@ -690,7 +724,6 @@
             });
         });
 
-        // Abrir/cerrar menú lateral
         menuToggle.addEventListener('click', () => {
             sidebar.classList.toggle('abierto');
             overlay.classList.toggle('activo');
@@ -701,8 +734,31 @@
             overlay.classList.remove('activo');
         });
 
-        // Asegurar que la página activa inicial esté bien reflejada en el menú lateral
-        // Por defecto, la primera (lore) está activa tanto en tabs como en menuItems
+        // Modo oscuro
+        const themeToggle = document.getElementById('themeToggle');
+        const icon = themeToggle.querySelector('i');
+
+        // Comprobar preferencia guardada
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.add('fa-moon');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
     </script>
 </body>
 </html>
